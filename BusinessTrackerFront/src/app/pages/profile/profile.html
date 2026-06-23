@@ -2,13 +2,11 @@
   <div class="container">
     <h2 class="section-title">Mi Perfil</h2>
 
-    @if (auth.isLoading$ | async) {
+    @if (!authService.isLoggedIn()) {
       <div class="text-center py-5">
-        <div class="spinner-border text-primary" role="status">
-          <span class="visually-hidden">Cargando...</span>
-        </div>
+        <p>No has iniciado sesión. Por favor inicia sesión para ver tu perfil.</p>
       </div>
-    } @else if (auth.isAuthenticated$ | async) {
+    } @else if (authService.user$ | async; as user) {
       <div class="row justify-content-center">
         <div class="col-lg-6">
           <div class="card-custom p-4 text-center profile-page-card">
@@ -17,39 +15,55 @@
         </div>
       </div>
 
-      @if (auth.user$ | async; as user) {
-        <div class="row justify-content-center mt-4">
-          <div class="col-lg-8">
-            <div class="card-custom p-4">
-              <h5 class="fw-bold mb-3">Detalles de la Cuenta</h5>
-              <div class="table-responsive">
-                <table class="table mb-0">
-                  <tbody>
-                    @if (user.nickname) {
-                      <tr>
-                        <td class="fw-semibold text-muted">Nickname</td>
-                        <td>{{ user.nickname }}</td>
-                      </tr>
-                    }
-                    @if (user.updated_at) {
-                      <tr>
-                        <td class="fw-semibold text-muted">Última actualización</td>
-                        <td>{{ user.updated_at | date:'medium' }}</td>
-                      </tr>
-                    }
-                    @if (user.sub) {
-                      <tr>
-                        <td class="fw-semibold text-muted">ID de usuario</td>
-                        <td><code>{{ user.sub }}</code></td>
-                      </tr>
-                    }
-                  </tbody>
-                </table>
-              </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-lg-8">
+          <div class="card-custom p-4">
+            <h5 class="fw-bold mb-3">Detalles de la Cuenta</h5>
+            <div class="table-responsive">
+              <table class="table mb-0">
+                <tbody>
+                  @if (user.username) {
+                    <tr>
+                      <td class="fw-semibold text-muted">Usuario</td>
+                      <td>{{ user.username }}</td>
+                    </tr>
+                  }
+                  @if (user.email) {
+                    <tr>
+                      <td class="fw-semibold text-muted">Correo</td>
+                      <td>{{ user.email }}</td>
+                    </tr>
+                  }
+                  @if (user.role) {
+                    <tr>
+                      <td class="fw-semibold text-muted">Rol</td>
+                      <td>{{ user.role }}</td>
+                    </tr>
+                  }
+                  @if (user.createdAt) {
+                    <tr>
+                      <td class="fw-semibold text-muted">Creado</td>
+                      <td>{{ user.createdAt | date:'medium' }}</td>
+                    </tr>
+                  }
+                  @if (user.updatedAt) {
+                    <tr>
+                      <td class="fw-semibold text-muted">Última actualización</td>
+                      <td>{{ user.updatedAt | date:'medium' }}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
-      }
+      </div>
+    } @else {
+      <div class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+      </div>
     }
   </div>
 </div>

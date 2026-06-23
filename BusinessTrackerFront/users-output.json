@@ -1,0 +1,152 @@
+﻿{
+    "value":  [
+                  {
+                      "id":  1,
+                      "username":  "carlos_mendez",
+                      "email":  "carlos.mendez@email.com",
+                      "password":  "password123",
+                      "role":  "USER"
+                  },
+                  {
+                      "id":  2,
+                      "username":  "maria_lopez",
+                      "email":  "maria.lopez@email.com",
+                      "password":  "password123",
+                      "role":  "USER"
+                  },
+                  {
+                      "id":  3,
+                      "username":  "juan_garcia",
+                      "email":  "juan.garcia@email.com",
+                      "password":  "password123",
+                      "role":  "USER"
+                  },
+                  {
+                      "id":  4,
+                      "username":  "ana_martinez",
+                      "email":  "ana.martinez@email.com",
+                      "password":  "password123",
+                      "role":  "USER"
+                  },
+                  {
+                      "id":  5,
+                      "username":  "pedro_sanchez",
+                      "email":  "pedro.sanchez@email.com",
+                      "password":  "password123",
+                      "role":  "ADMIN"
+                  },
+                  {
+                      "id":  6,
+                      "username":  "lucia_fernandez",
+                      "email":  "lucia.fernandez@email.com",
+                      "password":  "password123",
+                      "role":  "USER"
+                  },
+                  {
+                      "id":  7,
+                      "username":  "diego_ramirez",
+                      "email":  "diego.ramirez@email.com",
+                      "password":  "password123",
+                      "role":  "USER"
+                  },
+                  {
+                      "id":  8,
+                      "username":  "camila_torres",
+                      "email":  "camila.torres@email.com",
+                      "password":  "password123",
+                      "role":  "USER"
+                  },
+                  {
+                      "id":  9,
+                      "username":  "andres_herrera",
+                      "email":  "andres.herrera@email.com",
+                      "password":  "password123",
+                      "role":  "USER"
+                  },
+                  {
+                      "id":  10,
+                      "username":  "valentina_rojas",
+                      "email":  "valentina.rojas@email.com",
+                      "password":  "password123",
+                      "role":  "USER"
+                  },
+                  {
+                      "id":  11,
+                      "username":  "santiago_castro",
+                      "email":  "santiago.castro@email.com",
+                      "password":  "password123",
+                      "role":  "USER"
+                  },
+                  {
+                      "id":  12,
+                      "username":  "isabella_moreno",
+                      "email":  "isabella.moreno@email.com",
+                      "password":  "password123",
+                      "role":  "USER"
+                  },
+                  {
+                      "id":  13,
+                      "username":  "mateo_vargas",
+                      "email":  "mateo.vargas@email.com",
+                      "password":  "password123",
+                      "role":  "USER"
+                  },
+                  {
+                      "id":  14,
+                      "username":  "sofia_ruiz",
+                      "email":  "sofia.ruiz@email.com",
+                      "password":  "password123",
+                      "role":  "USER"
+                  },
+                  {
+                      "id":  15,
+                      "username":  "nicolas_ortega",
+                      "email":  "nicolas.ortega@email.com",
+                      "password":  "password123",
+                      "role":  "ADMIN"
+                  },
+                  {
+                      "id":  16,
+                      "username":  "gabriela_silva",
+                      "email":  "gabriela.silva@email.com",
+                      "password":  "password123",
+                      "role":  "USER"
+                  },
+                  {
+                      "id":  17,
+                      "username":  "daniel_romero",
+                      "email":  "daniel.romero@email.com",
+                      "password":  "password123",
+                      "role":  "USER"
+                  },
+                  {
+                      "id":  18,
+                      "username":  "paula_navarro",
+                      "email":  "paula.navarro@email.com",
+                      "password":  "password123",
+                      "role":  "USER"
+                  },
+                  {
+                      "id":  19,
+                      "username":  "felipe_molina",
+                      "email":  "felipe.molina@email.com",
+                      "password":  "password123",
+                      "role":  "USER"
+                  },
+                  {
+                      "id":  20,
+                      "username":  "laura_pena",
+                      "email":  "laura.pena@email.com",
+                      "password":  "password123",
+                      "role":  "USER"
+                  },
+                  {
+                      "id":  21,
+                      "username":  "tanilse",
+                      "email":  "tani@gmail.com",
+                      "password":  "$2a$10$fPL.FucXxWLcxskimtelm.8KPdx6YO1FtTuGQhOTto1Wkf8Ksr3O6",
+                      "role":  "ADMIN"
+                  }
+              ],
+    "Count":  21
+}

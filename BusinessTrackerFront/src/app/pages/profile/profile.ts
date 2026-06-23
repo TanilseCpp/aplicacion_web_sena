@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '@auth0/auth0-angular';
 import { ProfileComponent } from '../../components/profile.component';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -11,5 +12,10 @@ import { ProfileComponent } from '../../components/profile.component';
   styleUrl: './profile.css',
 })
 export class ProfilePage {
-  protected auth = inject(AuthService);
+  private readonly router = inject(Router);
+  readonly authService = inject(AuthService);
+
+  logout(): void {
+    this.authService.logout();
+  }
 }

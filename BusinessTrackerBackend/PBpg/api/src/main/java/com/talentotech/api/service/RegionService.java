@@ -1,5 +1,4 @@
 package com.talentotech.api.service;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.talentotech.api.repository.RegionRepository;
 import com.talentotech.api.repository.CountryRepository;
@@ -9,11 +8,15 @@ import com.talentotech.api.exception.ResourceNotFoundException;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class RegionService {
 
     private final RegionRepository regionRepository;
     private final CountryRepository countryRepository;
+
+    public RegionService(RegionRepository regionRepository, CountryRepository countryRepository) {
+        this.regionRepository = regionRepository;
+        this.countryRepository = countryRepository;
+    }
 
     public Region save(Region region) {
 

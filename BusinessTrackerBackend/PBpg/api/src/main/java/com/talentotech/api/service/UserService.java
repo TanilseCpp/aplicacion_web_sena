@@ -62,7 +62,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public String login(LoginRequest request){
+    public User login(LoginRequest request){
         Optional<User> optionalUser = userRepository.findByUsername(request.getUsername());
         if(optionalUser.isEmpty()){
             throw new ResourceNotFoundException("Usuario no encontrado");
@@ -70,11 +70,11 @@ public class UserService {
 
         User user = optionalUser.get();
 
-        if(!passwordEncoder.matches(request.getPassword(), user.getPassword())){
-            throw new ResourceNotFoundException("Contraseña incorrecta");
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new RuntimeException("Credenciales incorrectas");
         }
 
-        return "Login exitoso";
+        return user;
     }
 
 }

@@ -44,7 +44,7 @@
             Emprendimientos / Global
           </a>
         </li>
-        @if (auth.isAuthenticated$ | async) {
+        @if (isLoggedIn()) {
           <li class="nav-item">
             <a
               class="nav-link"
@@ -68,15 +68,10 @@
 
       <!-- Auth Section -->
       <div class="navbar-auth ms-lg-3 d-flex align-items-center gap-2">
-        @if (auth.isLoading$ | async) {
-          <div class="spinner-border spinner-border-sm text-light" role="status"></div>
-        } @else if (auth.isAuthenticated$ | async) {
-          @if (auth.user$ | async; as user) {
+        @if (isLoggedIn()) {
+          @if (authService.getCurrentUser(); as user) {
             <a routerLink="profile" class="user-info-link" (click)="setActive('profile')">
-              @if (user.picture) {
-                <img [src]="user.picture" [alt]="user.name" class="user-avatar" />
-              }
-              <span class="user-name d-none d-lg-inline">{{ user.name }}</span>
+              <span class="user-name d-none d-lg-inline">{{ user.username }}</span>
             </a>
           }
           <app-logout-button />

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
+import { AuthService } from '../services/auth.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -7,38 +7,47 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   template: `
-    @if (auth.isLoading$ | async) {
+    @if (!isLoggedIn()) {
       <div class="profile-loading">
-        <div class="spinner-border spinner-border-sm text-primary" role="status"></div>
-        <span>Cargando perfil...</span>
+        <p>No has iniciado sesión.</p>
       </div>
-    }
-
-    @if ((auth.isAuthenticated$ | async) && (auth.user$ | async); as user) {
+    } @else if (user$ | async; as user) {
       <div class="profile-container">
         <div class="avatar-wrapper">
-          @if (user.picture) {
-            <img [src]="user.picture" [alt]="user.name || 'User'" class="avatar-img" />
-          } @else {
-            <div class="avatar-placeholder">
-              {{ getInitials(user.name || user.email || 'U') }}
-            </div>
-          }
+          <div class="avatar-placeholder">
+            {{ getInitials(user.username || user.email || 'U') }}
+          </div>
           <div class="avatar-status-dot"></div>
         </div>
 
         <div class="profile-info">
-          <h4 class="profile-name">{{ user.name || 'Usuario' }}</h4>
+          <h4 class="profile-name">{{ user.username || 'Usuario' }}</h4>
           <p class="profile-email">{{ user.email }}</p>
         </div>
 
-        @if (user.email_verified !== undefined) {
-          <div class="profile-meta">
-            <span class="meta-badge" [class.verified]="user.email_verified" [class.pending]="!user.email_verified">
-              {{ user.email_verified ? '✅ Email verificado' : '⏳ Verificación pendiente' }}
-            </span>
-          </div>
-        }
+        <div class="profile-meta">
+          <span class="meta-badge">Rol: {{ user.role }}</span>
+        </div>
+
+        <div class="profile-details">
+          @if (user.createdAt) {
+            <div class="profile-detail-row">
+              <span class="detail-label">Creado:</span>
+              <span>{{ user.createdAt | date:'medium' }}</span>
+            </div>
+          }
+          @if (user.updatedAt) {
+            <div class="profile-detail-row">
+              <span class="detail-label">Última actualización:</span>
+              <span>{{ user.updatedAt | date:'medium' }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    } @else {
+      <div class="profile-loading">
+        <div class="spinner-border spinner-border-sm text-primary" role="status"></div>
+        <span>Cargando perfil...</span>
       </div>
     }
   `,
@@ -62,20 +71,6 @@ import { CommonModule } from '@angular/common';
 
     .avatar-wrapper {
       position: relative;
-    }
-
-    .avatar-img {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--color-accent, #1ABC9C);
-      box-shadow: 0 4px 15px rgba(26, 188, 156, 0.25);
-      transition: transform 0.3s ease;
-    }
-
-    .avatar-img:hover {
-      transform: scale(1.05);
     }
 
     .avatar-placeholder {
@@ -132,19 +127,30 @@ import { CommonModule } from '@angular/common';
       font-weight: 500;
     }
 
-    .meta-badge.verified {
-      background-color: rgba(39, 174, 96, 0.1);
-      color: var(--color-success, #27AE60);
+    .profile-details {
+      width: 100%;
+      margin-top: 1rem;
     }
 
-    .meta-badge.pending {
-      background-color: rgba(243, 156, 18, 0.1);
-      color: var(--color-warning, #F39C12);
+    .profile-detail-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      border-top: 1px solid #e9ecef;
+      padding: 0.75rem 0;
+      font-size: 0.95rem;
+      color: #495057;
+    }
+
+    .detail-label {
+      color: #6c757d;
     }
   `]
 })
 export class ProfileComponent {
-  protected auth = inject(AuthService);
+  protected authService = inject(AuthService);
+  readonly isLoggedIn = this.authService.isLoggedIn;
+  readonly user$ = this.authService.user$;
 
   getInitials(name: string): string {
     return name

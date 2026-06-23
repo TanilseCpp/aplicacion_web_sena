@@ -1,5 +1,4 @@
 package com.talentotech.api.controller;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import com.talentotech.api.service.RegionService;
 import com.talentotech.api.model.Region;
@@ -9,10 +8,13 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/region")
-@RequiredArgsConstructor
 public class RegionController {
 
     private final RegionService regionService;
+
+    public RegionController(RegionService regionService) {
+        this.regionService = regionService;
+    }
 
     @PostMapping
     public Region create(@RequestBody Region region) {

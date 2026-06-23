@@ -1,0 +1,24 @@
+﻿{
+    "id":  22,
+    "businessName":  "E2E Test Biz",
+    "email":  "e2e@biz.com",
+    "annualIncome":  5000.0,
+    "type":  "OTHER",
+    "user":  {
+                 "id":  23,
+                 "username":  "e2e_test",
+                 "email":  "e2e@test.com",
+                 "password":  "$2a$10$PMgAHLowwGmSweAS4eE.8.NYqST2WDHApCtaHQT.faujgNeGk1qPW",
+                 "role":  "USER"
+             },
+    "region":  {
+                   "id":  1,
+                   "name":  "BogotÃ¡ D.C.",
+                   "country":  {
+                                   "id":  1,
+                                   "name":  "Colombia"
+                               }
+               },
+    "profit":  5000.0,
+    "roi":  0.0
+}

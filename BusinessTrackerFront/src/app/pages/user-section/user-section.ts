@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '@auth0/auth0-angular';
+import { AuthService } from '../../services/auth.service';
 import { UserService, BusinessService, RegionService } from '../../services/api';
 import { IUser } from '../../models/user.model';
 import { IBusiness, BusinessType } from '../../models/business.model';
@@ -19,8 +19,7 @@ export class UserSection implements OnInit {
   private readonly regionService = inject(RegionService);
   readonly auth = inject(AuthService);
 
-  /** Auth0 user picture */
-  readonly auth0Picture = signal<string | null>(null);
+  readonly user$ = this.auth.user$;
 
   /** Current user matched from backend */
   readonly currentUser = signal<IUser | null>(null);
@@ -118,18 +117,16 @@ export class UserSection implements OnInit {
       next: (regions) => this.regions.set(regions),
     });
 
-    this.auth.user$.subscribe((auth0User) => {
-      if (!auth0User?.email) {
+    this.auth.user$.subscribe((user) => {
+      if (!user?.email) {
         this.isLoading.set(false);
         return;
       }
 
-      this.auth0Picture.set(auth0User.picture ?? null);
-
       this.userService.getAll().subscribe({
         next: (users) => {
           const matched = users.find(
-            (u) => u.email.toLowerCase() === auth0User.email!.toLowerCase()
+            (u) => u.email.toLowerCase() === user.email.toLowerCase()
           );
           if (matched) {
             this.currentUser.set(matched);

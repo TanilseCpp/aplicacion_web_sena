@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
+import { AuthService } from '../../services/auth.service';
 import { LoginButtonComponent } from '../../components/login-button.component';
 import { LogoutButtonComponent } from '../../components/logout-button.component';
 
@@ -12,7 +12,8 @@ import { LogoutButtonComponent } from '../../components/logout-button.component'
   styleUrl: './header.css',
 })
 export class Header {
-  readonly auth = inject(AuthService);
+  readonly authService = inject(AuthService);
+  readonly isLoggedIn = this.authService.isLoggedIn;
   readonly activeRoute = signal('home');
 
   setActive(route: string): void {

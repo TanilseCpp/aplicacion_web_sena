@@ -1,15 +1,17 @@
 package com.talentotech.api.service;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
 import com.talentotech.api.repository.CountryRepository;
 import com.talentotech.api.model.Country;
 import com.talentotech.api.exception.ResourceNotFoundException;
 @Service
-@RequiredArgsConstructor
 public class CountryService {
 
     private final CountryRepository countryRepository;
+
+    public CountryService(CountryRepository countryRepository) {
+        this.countryRepository = countryRepository;
+    }
 
     public Country save(Country country) {
 
